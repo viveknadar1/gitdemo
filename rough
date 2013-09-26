@@ -1,0 +1,25 @@
+<?php
+$con = mysql_connect("localhost","root","root");
+if (!$con) {
+  die('Could not connect: ' . mysql_error());
+}
+
+mysql_select_db("db_attendance", $con);
+
+
+//Query for counting no of records
+$result = mysql_query("select count(*) FROM tb_timings");
+
+if (!$result) {
+    echo 'Could not run query: ' . mysql_error();
+    exit;
+}
+
+$row = mysql_fetch_array($result);
+
+$total = $row[0];
+echo "Total rows: ".$total;
+
+mysql_close($con);
+?>
+
